@@ -7,31 +7,39 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      backgroundColor: Color(0xFFD4D4F8), // Warna latar belakang
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Logo Universitas & Prodi
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/unesa_logo.png', height: 50),
-                const SizedBox(width: 16),
-                Image.asset('assets/images/mi_logo.png', height: 50),
-              ],
+            // Logo di atas
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/unesa_logo.png',
+                    height: 50,
+                  ),
+                  SizedBox(width: 10),
+                  Image.asset(
+                    'assets/images/mi_logo.png',
+                    height: 50,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 40),
-
-            // Judul
+            // Box putih untuk judul aplikasi
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Text(
-                "Welcome to Who’s Who in IT",
+              child: Text(
+                "Welcome to Who’s Who in IT?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -39,40 +47,48 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-
-            // Deskripsi
+            SizedBox(height: 20),
+            // Box putih untuk teks deskripsi + tombol mulai quiz
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Text(
-                "Mohon isi soal dengan pilihan jawaban yang diberikan, dan lihat nilai anda!",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+              child: Column(
+                children: [
+                  Text(
+                    "Mohon isi soal dengan pilihan jawaban yang diberikan, dan lihat nilai anda!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () => context.go('/quiz'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text(
+                      "MULAI QUIZ",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 40),
-
-            // Tombol Mulai Quiz
-            ElevatedButton(
-              onPressed: () => context.go('/quiz'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              child: const Text("MULAI QUIZ", style: TextStyle(fontSize: 18)),
             ),
           ],
         ),
       ),
-      backgroundColor: const Color(0xFFD6C6F9), // Warna background sesuai desain
     );
   }
 }
