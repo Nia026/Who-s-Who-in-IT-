@@ -83,6 +83,25 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  const SizedBox(height: 15),
+
+                  ElevatedButton(
+                    onPressed: () => context.go('/about'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text(
+                      "ABOUT US",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

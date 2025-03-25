@@ -5,6 +5,7 @@ import 'providers/quiz_provider.dart';
 import 'screens/homepage.dart';
 import 'screens/quiz_page.dart';
 import 'screens/result_page.dart';
+import 'screens/about_page.dart';
 
 void main() {
   runApp(
@@ -27,6 +28,7 @@ class QuizApp extends StatelessWidget {
           GoRoute(path: '/', builder: (context, state) => HomeScreen()),
           GoRoute(path: '/quiz', builder: (context, state) => QuizScreen()),
           GoRoute(path: '/result', builder: (context, state) => ResultScreen()),
+          GoRoute(path: '/about', builder: (context, state) => AboutScreen()),
         ]
       ),
     );

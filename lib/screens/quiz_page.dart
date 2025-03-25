@@ -11,9 +11,10 @@ class QuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final quizProvider = Provider.of<QuizProvider>(context);
     final currentQuestion = questions[quizProvider.currentIndex];
+    final userAnswer = quizProvider.userAnswers[quizProvider.currentIndex];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFD4D4F8), // Warna background sesuai Figma
+      backgroundColor: const Color(0xFFD4D4F8),
       appBar: AppBar(title: const Text("HALAMAN QUIZ")),
       body: Center(
         child: Padding(
@@ -21,7 +22,6 @@ class QuizScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Box putih untuk menampilkan pertanyaan
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
@@ -39,36 +39,36 @@ class QuizScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              // Tombol pilihan jawaban (Benar/Salah) dalam satu baris
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _AnswerButton(
                     text: "BENAR",
-                    isSelected: quizProvider.userAnswers[quizProvider.currentIndex] == true,
-                    onPressed: () => quizProvider.answerQuestion(true),
-                    color: const Color(0xFFAEF399),
+                    isSelected: userAnswer == true,
+                    onPressed: () {
+                      quizProvider.answerQuestion(true);
+                    },
+                    defaultColor: const Color(0xFF81C784),
+                    selectedColor: const Color(0xFF4CAF50),
                   ),
                   const SizedBox(width: 20),
                   _AnswerButton(
                     text: "SALAH",
-                    isSelected: quizProvider.userAnswers[quizProvider.currentIndex] == false,
-                    onPressed: () => quizProvider.answerQuestion(false),
-                    color: const Color(0xFFFF9092),
+                    isSelected: userAnswer == false,
+                    onPressed: () {
+                      quizProvider.answerQuestion(false);
+                    },
+                    defaultColor: const Color(0xFFE57373),
+                    selectedColor: const Color(0xFFF44336),
                   ),
                 ],
               ),
-
               const SizedBox(height: 20),
-
-              // Navigasi soal (prev & next/lihat jawaban)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (quizProvider.currentIndex > 0) // Hanya tampil jika bukan soal pertama
+                  if (quizProvider.currentIndex > 0)
                     _NavButton(
                       icon: Icons.arrow_back,
                       onPressed: quizProvider.prevQuestion,
@@ -83,18 +83,14 @@ class QuizScreen extends StatelessWidget {
                       ),
                       child: _NavButton(
                         icon: Icons.check,
-                        onPressed: quizProvider.userAnswers[quizProvider.currentIndex] == null
-                            ? null
-                            : () => context.go('/result'),
+                        onPressed: userAnswer == null ? null : () => context.go('/result'),
                         label: "LIHAT JAWABAN",
                       ),
                     )
                   else
                     _NavButton(
                       icon: Icons.arrow_forward,
-                      onPressed: quizProvider.userAnswers[quizProvider.currentIndex] == null
-                          ? null
-                          : quizProvider.nextQuestion,
+                      onPressed: userAnswer == null ? null : quizProvider.nextQuestion,
                     ),
                 ],
               ),
@@ -106,18 +102,19 @@ class QuizScreen extends StatelessWidget {
   }
 }
 
-// Widget tombol jawaban (Benar/Salah)
 class _AnswerButton extends StatelessWidget {
   final String text;
   final bool isSelected;
   final VoidCallback onPressed;
-  final Color color;
+  final Color defaultColor;
+  final Color selectedColor;
 
   const _AnswerButton({
     required this.text,
     required this.isSelected,
     required this.onPressed,
-    required this.color,
+    required this.defaultColor,
+    required this.selectedColor,
   });
 
   @override
@@ -125,7 +122,7 @@ class _AnswerButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? color.withOpacity(0.7) : color,
+        backgroundColor: isSelected ? selectedColor : defaultColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(60),
         ),
@@ -143,7 +140,6 @@ class _AnswerButton extends StatelessWidget {
   }
 }
 
-// Widget tombol navigasi
 class _NavButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onPressed;

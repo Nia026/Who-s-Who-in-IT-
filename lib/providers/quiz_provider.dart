@@ -11,13 +11,19 @@ class QuizProvider extends ChangeNotifier {
   List<bool?> get userAnswers => _userAnswers;
 
   void answerQuestion(bool answer) {
-    if (_userAnswers[_currentIndex] == null) {
-      _userAnswers[_currentIndex] = answer;
-      if (answer == questions[_currentIndex].answer) {
-        _score += 10;
+    if (_userAnswers[_currentIndex] != null) {
+      if (_userAnswers[_currentIndex] == questions[_currentIndex].answer) {
+        _score -= 10;
       }
-      notifyListeners();
     }
+
+    _userAnswers[_currentIndex] = answer;
+
+    if (answer == questions[_currentIndex].answer) {
+      _score += 10;
+    }
+
+    notifyListeners();
   }
 
   void nextQuestion() {
