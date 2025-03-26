@@ -21,9 +21,9 @@ class AboutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            buildTeamCard('Nia Rizqika Febria Rahma', '23091397051', '2023B', 'assets/images/unesa_logo.png'),
-            buildTeamCard('Rachmah Fia Putri Dewi', '23091397057', '2023B', 'assets/images/unesa_logo.png'),
-            buildTeamCard('Arum Sekar Wijayanti', '23091397064', '2023B', 'assets/images/unesa_logo.png'),
+            buildTeamCard('Nia Rizqika Febria Rahma', '23091397051', '2023B', 'assets/images/nia.jpeg'),
+            buildTeamCard('Rachmah Fia Putri Dewi', '23091397057', '2023B', 'assets/images/putri.png'),
+            buildTeamCard('Arum Sekar Wijayanti', '23091397064', '2023B', 'assets/images/arum.jpg'),
           ],
         ),
       ),

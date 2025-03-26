@@ -57,6 +57,9 @@ flutter:
   assets:
     - assets/images/unesa_logo.png
     - assets/images/mi_logo.png
+    - assets/images/nia.jpeg
+    - assets/images/arum.jpg
+    - assets/images/putri.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
