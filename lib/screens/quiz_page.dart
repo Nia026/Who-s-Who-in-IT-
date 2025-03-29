@@ -50,7 +50,7 @@ class QuizScreen extends StatelessWidget {
                       quizProvider.answerQuestion(true);
                     },
                     defaultColor: const Color(0xFF81C784),
-                    selectedColor: const Color(0xFF4CAF50),
+                    selectedColor: const Color(0xFF1B5E20), //0xFF4CAF50
                   ),
                   const SizedBox(width: 20),
                   _AnswerButton(
@@ -60,7 +60,7 @@ class QuizScreen extends StatelessWidget {
                       quizProvider.answerQuestion(false);
                     },
                     defaultColor: const Color(0xFFE57373),
-                    selectedColor: const Color(0xFFF44336),
+                    selectedColor: const Color(0xFFB71C1C), //0xFFF44336
                   ),
                 ],
               ),
